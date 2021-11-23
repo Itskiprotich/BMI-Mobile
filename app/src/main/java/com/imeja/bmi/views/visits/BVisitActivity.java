@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.imeja.bmi.R;
 
-public class AVitalActivity extends AppCompatActivity {
+public class BVisitActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_avital);
+        setContentView(R.layout.activity_bvisit);
     }
 }
