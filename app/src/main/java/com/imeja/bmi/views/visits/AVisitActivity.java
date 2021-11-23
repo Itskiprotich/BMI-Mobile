@@ -147,7 +147,7 @@ public class AVisitActivity extends AppCompatActivity {
                                 .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
                         dialog.show();
                     } else {
-                        dialog = new SweetAlertDialog(AVisitActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                        dialog = new SweetAlertDialog(AVisitActivity.this, SweetAlertDialog.ERROR_TYPE);
                         dialog.setTitleText("Failed")
                                 .setContentText(visitResponse.data.message)
                                 .setConfirmClickListener(on -> {

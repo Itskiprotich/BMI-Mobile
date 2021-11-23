@@ -30,8 +30,8 @@
     <string name="action_vitals">Vitals Form</string>
     <string name="action_patient">Patient Name</string>
     <string name="action_visit_date">Visit Date</string>
-    <string name="action_height">Height</string>
-    <string name="action_weight">Weight</string>
+    <string name="action_height">Height in (M)</string>
+    <string name="action_weight">Weight in (Kgs)</string>
     <string name="action_bmi">BMI</string>
     <string name="action_visit_a">Visit A</string>
     <string name="action_visit_b">Visit B</string>
@@ -46,4 +46,5 @@
     <string name="action_date_of">Date of Birth</string>
     <string name="action_member">Member Since</string>
     <string name="action_name_user">Full Name</string>
+    <string name="action_logout">Logout</string>
 </resources>

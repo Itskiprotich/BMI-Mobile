@@ -8,7 +8,6 @@ public class WhereTo {
     @SerializedName("id")
     @Expose
     public String id;
-
     @SerializedName("patient_id")
     @Expose
     public String patient_id;

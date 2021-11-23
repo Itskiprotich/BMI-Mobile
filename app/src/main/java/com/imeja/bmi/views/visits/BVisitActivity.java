@@ -136,9 +136,8 @@ public class BVisitActivity extends AppCompatActivity {
                                     on.dismiss();
                                 })
                                 .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
-                        dialog.show();
                     } else {
-                        dialog = new SweetAlertDialog(BVisitActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                        dialog = new SweetAlertDialog(BVisitActivity.this, SweetAlertDialog.ERROR_TYPE);
                         dialog.setTitleText("Failed")
                                 .setContentText(visitResponse.data.message)
                                 .setConfirmClickListener(on -> {
@@ -146,8 +145,8 @@ public class BVisitActivity extends AppCompatActivity {
                                     on.dismiss();
                                 })
                                 .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
-                        dialog.show();
                     }
+                    dialog.show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

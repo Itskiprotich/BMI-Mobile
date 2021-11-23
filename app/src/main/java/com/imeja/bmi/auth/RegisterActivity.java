@@ -74,7 +74,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-
         if (email.isEmpty()) {
             binding.edtEmail.setError("Enter Email Address");
             binding.edtEmail.requestFocus();
@@ -82,6 +81,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if (password.isEmpty()) {
             binding.edtPassword.setError("Enter Password");
+            binding.edtPassword.requestFocus();
+            return;
+        }
+        if (password.length() < 6) {
+            binding.edtPassword.setError("Password should be 6 characters");
             binding.edtPassword.requestFocus();
             return;
         }
@@ -95,34 +99,45 @@ public class RegisterActivity extends AppCompatActivity {
             binding.edtConfirmPassword.requestFocus();
             return;
         }
+        if (AppUtils.isOnline(RegisterActivity.this)) {
+            authViewModel.createAccount(RegisterActivity.this, binding, firstname,
+                    lastname, email, password);
+            authViewModel.responseMutableLiveData.observe(this, response -> {
+                if (response != null) {
+                    try {
+                        if (response.data != null) {
+                            if (response.data.proceed.equalsIgnoreCase("0")) {
+                                dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                                dialog.setTitleText("Success")
+                                        .setContentText("Registration successful")
+                                        .setConfirmClickListener(on -> {
+                                            RegisterActivity.this.finish();
+                                            on.dismiss();
+                                        })
+                                        .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+                            } else {
+                                dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE);
+                                dialog.setTitleText("Failed")
+                                        .setContentText(response.data.message)
+                                        .setConfirmClickListener(on -> {
+                                            RegisterActivity.this.finish();
+                                            on.dismiss();
+                                        })
+                                        .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+                            }
 
-        authViewModel.createAccount(RegisterActivity.this, binding, firstname,
-                lastname, email, password);
-        authViewModel.responseMutableLiveData.observe(this, response -> {
-            if (response != null) {
-                try {
-                    if (response.data != null) {
-                        if (response.data.proceed.equalsIgnoreCase("0")) {
-                            dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                            dialog.setTitleText("Success")
-                                    .setContentText("Registration successful")
-                                    .setConfirmClickListener(on -> {
-                                        RegisterActivity.this.finish();
-                                        on.dismiss();
-                                    })
-                                    .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
                         } else {
                             dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE);
-                            dialog.setTitleText("Failed")
-                                    .setContentText(response.data.message)
+                            dialog.setTitleText("Request Failed!!")
+                                    .setContentText("Experience problems loading data, please try again")
                                     .setConfirmClickListener(on -> {
-                                        RegisterActivity.this.finish();
                                         on.dismiss();
                                     })
                                     .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
                         }
-
-                    } else {
+                        dialog.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                         dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE);
                         dialog.setTitleText("Request Failed!!")
                                 .setContentText("Experience problems loading data, please try again")
@@ -130,21 +145,20 @@ public class RegisterActivity extends AppCompatActivity {
                                     on.dismiss();
                                 })
                                 .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+                        dialog.show();
                     }
-                    dialog.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE);
-                    dialog.setTitleText("Request Failed!!")
-                            .setContentText("Experience problems loading data, please try again")
-                            .setConfirmClickListener(on -> {
-                                on.dismiss();
-                            })
-                            .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
-                    dialog.show();
-                }
 
-            }
-        });
+                }
+            });
+        } else {
+            dialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE);
+            dialog.setTitleText("Internet Connection!!")
+                    .setContentText("An active Internet connection is required")
+                    .setConfirmClickListener(on -> {
+                        on.dismiss();
+                    })
+                    .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+            dialog.show();
+        }
     }
 }

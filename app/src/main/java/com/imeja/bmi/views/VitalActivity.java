@@ -22,6 +22,7 @@ import com.imeja.bmi.viewmodels.PatientViewModel;
 import com.imeja.bmi.views.visits.AVisitActivity;
 import com.imeja.bmi.views.visits.BVisitActivity;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +44,9 @@ public class VitalActivity extends AppCompatActivity {
     private String mFormat;
     private SimpleDateFormat mSdf;
     private DatePickerDialog.OnDateSetListener dateSetListener;
-    private double double_height,  double_weight;
+    private double double_height, double_weight;
+    private DecimalFormat format;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,8 +112,8 @@ public class VitalActivity extends AppCompatActivity {
 
                         if (!binding.edtHeight.getText().toString().isEmpty()) {
                             double_height = Double.parseDouble(binding.edtHeight.getText().toString());
-                          calculateBMI(double_weight,double_height);
-                        }else{
+                            calculateBMI(double_weight, double_height);
+                        } else {
                             Toast.makeText(VitalActivity.this, "Enter Height First", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -121,13 +124,15 @@ public class VitalActivity extends AppCompatActivity {
         });
     }
 
-    private void calculateBMI(double weight,double height) {
-       try {
-           double BMI = weight / (height * height);
-           binding.edtBmi.setText(String.valueOf(BMI));
-       }catch (Exception e){
-           e.printStackTrace();
-       }
+    private void calculateBMI(double weight, double height) {
+        try {
+            double BMI = weight / (height * height);
+            format = new DecimalFormat("##.00");
+
+            binding.edtBmi.setText(format.format(BMI));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void disableTextInputEditText(TextInputEditText editText) {
@@ -135,6 +140,7 @@ public class VitalActivity extends AppCompatActivity {
         editText.setCursorVisible(false);
         editText.setKeyListener(null);
     }
+
     private void displayDate() {
         binding.edtVisitDate.setText(mSdf.format(mCalendar.getTime()));
     }
@@ -155,7 +161,7 @@ public class VitalActivity extends AppCompatActivity {
                     adapter = new ArrayAdapter(VitalActivity.this,
                             android.R.layout.simple_list_item_1, stringList);
                     binding.autName.setAdapter(adapter);
-
+                    patient_name = adapter.getItem(0).toString();
                 } catch (Exception e) {
                     e.printStackTrace();
 
@@ -177,7 +183,7 @@ public class VitalActivity extends AppCompatActivity {
 
     private void checkInputs() {
         patient_name = binding.autName.getText().toString();
-        if (patient_name.isEmpty()){
+        if (patient_name.isEmpty()) {
             Toast.makeText(VitalActivity.this, "Select a Patient", Toast.LENGTH_SHORT).show();
             return;
         }

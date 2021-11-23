@@ -1,38 +1,38 @@
-package com.imeja.bmi.ui.notifications;
+package com.imeja.bmi.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.imeja.bmi.Controller;
-import com.imeja.bmi.R;
-import com.imeja.bmi.databinding.FragmentNotificationsBinding;
+import com.imeja.bmi.auth.LoginActivity;
+import com.imeja.bmi.databinding.FragmentProfileBinding;
 
-public class NotificationsFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
-    private FragmentNotificationsBinding binding;
+    private FragmentProfileBinding binding;
     private String name, email, joined;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         name = Controller.getName();
         email = Controller.getEmail();
         joined = Controller.getJoined();
         setData(name, email, joined);
-
+        binding.btnSubmit.setOnClickListener(v -> {
+            Controller.setIsloggedIn(false);
+            requireActivity().finishAffinity();
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        });
         return root;
     }
 

@@ -112,9 +112,9 @@ public class HomeFragment extends Fragment {
                 if (visit != null) {
                     if (visit.visits != null) {
                         try {
-                            if (visit.visits.toString().equalsIgnoreCase("[]")){
+                            if (visit.visits.toString().equalsIgnoreCase("[]")) {
 
-                            }else {
+                            } else {
                                 visitsList = visit.visits;
                                 try {
                                     adapter = new VisitsAdapter(getActivity(), visitsList);

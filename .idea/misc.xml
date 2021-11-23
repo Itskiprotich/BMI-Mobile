@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.17760416666666667" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1838768115942029" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/listing_item.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19025641025641027" />
       </map>

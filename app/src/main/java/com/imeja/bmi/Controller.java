@@ -42,7 +42,7 @@ public class Controller extends Application {
         editor.commit();
     }
 
-    public static String  getCurrentPatient() {
+    public static String getCurrentPatient() {
         return sharedpreferences.getString(currentPatient, "");
     }
 
@@ -60,6 +60,11 @@ public class Controller extends Application {
 
     public static String getJoined() {
         return sharedpreferences.getString(userJoined, "");
+    }
+
+    public static void setIsloggedIn(boolean b) {
+        editor.putBoolean(isLoggedIn, b);
+        editor.commit();
     }
 
 

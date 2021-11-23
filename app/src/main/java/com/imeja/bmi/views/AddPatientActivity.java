@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.imeja.bmi.auth.LoginActivity;
 import com.imeja.bmi.auth.RegisterActivity;
 import com.imeja.bmi.databinding.ActivityAddPatientBinding;
 import com.imeja.bmi.utils.AppUtils;
@@ -142,31 +143,41 @@ public class AddPatientActivity extends AppCompatActivity {
             return;
         }
         if (dob.isEmpty()) {
-            binding.edtDob.setError("Enter Last Name");
-            binding.edtDob.requestFocus();
+            Toast.makeText(AddPatientActivity.this, "Select Date of Birth", Toast.LENGTH_SHORT).show();
             return;
         }
-        viewModel.addPatient(AddPatientActivity.this, binding, unique, fname, lname, gender, dob, date);
-        viewModel.liveData.observe(this, response -> {
-            if (response != null) {
-                try {
-                    dialog = new SweetAlertDialog(AddPatientActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                    dialog.setTitleText("Success")
-                            .setContentText("Registration successful")
-                            .setConfirmClickListener(on -> {
-                                AddPatientActivity.this.finish();
-                                on.dismiss();
-                            })
-                            .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
-                    dialog.show();
+        if (AppUtils.isOnline(AddPatientActivity.this)) {
+            viewModel.addPatient(AddPatientActivity.this, binding, unique, fname, lname, gender, dob, date);
+            viewModel.liveData.observe(this, response -> {
+                if (response != null) {
+                    try {
+                        dialog = new SweetAlertDialog(AddPatientActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                        dialog.setTitleText("Success")
+                                .setContentText("Registration successful")
+                                .setConfirmClickListener(on -> {
+                                    AddPatientActivity.this.finish();
+                                    on.dismiss();
+                                })
+                                .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+                        dialog.show();
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-        });
+            });
+        }else{
+            dialog = new SweetAlertDialog(AddPatientActivity.this, SweetAlertDialog.ERROR_TYPE);
+            dialog.setTitleText("Internet Connection!!")
+                    .setContentText("An active Internet connection is required")
+                    .setConfirmClickListener(on -> {
+                        on.dismiss();
+                    })
+                    .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+            dialog.show();
+        }
 
 
     }
