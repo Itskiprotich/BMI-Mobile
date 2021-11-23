@@ -1,5 +1,5 @@
 # BMI-Mobile
-Android Mobile App
+Android Mobile App to register patients, take vitals ( Height & Weight and calculate the BMI),
 
 ## Technologies & Languages
 
