@@ -11,6 +11,15 @@ Android Mobile App
 # Installation and Setup
 Ensure you have android studio installed on your machine.
 
+Clone the repository below
+
+```
+git clone https://github.com/Itskiprotich/BMI-Mobile.git
+```
+
+## Running the application
+Open the cloned project in Android Studio
+
 ## App Overview
 
 | | | |
