@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-</selector>
+    <item android:drawable="@color/purple_200" />
+    <item
+        android:bottom="1dp"
+        android:drawable="@color/white"
+        android:left="@dimen/size_1"
+        android:right="1dp" />
+</layer-list>

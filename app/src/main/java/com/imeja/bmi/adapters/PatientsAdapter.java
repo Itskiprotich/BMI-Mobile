@@ -19,7 +19,7 @@ public class PatientsAdapter  extends RecyclerView.Adapter<VisitsHolder> {
     private Context context;
     private List<Patients> visitsList;
     private ListingItemBinding binding;
-    private Patients visit;
+    private Patients patient;
 
     public PatientsAdapter(Context context, List<Patients> visitsList) {
         this.context = context;
@@ -38,11 +38,11 @@ public class PatientsAdapter  extends RecyclerView.Adapter<VisitsHolder> {
     @Override
     public void onBindViewHolder(@NonNull VisitsHolder holder, int position) {
         try {
-            visit = visitsList.get(position);
+            patient = visitsList.get(position);
 
-            holder.binding.tvName.setText(visit.firstname);
-            holder.binding.tvAge.setText(visit.dob);
-            holder.binding.tvStatus.setText(visit.gender);
+            holder.binding.tvName.setText(patient.firstname+" "+patient.lastname);
+            holder.binding.tvAge.setText(patient.dob);
+            holder.binding.tvStatus.setText(patient.gender);
         }catch (Exception e){
             e.printStackTrace();
         }

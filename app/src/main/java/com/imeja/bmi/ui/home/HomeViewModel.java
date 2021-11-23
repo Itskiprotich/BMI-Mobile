@@ -27,10 +27,10 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    public void loadVisits(Context context, FragmentHomeBinding binding) {
+    public void loadVisits(Context context, FragmentHomeBinding binding, String date) {
         mApiService = RetrofitInstance.getRetroClient(context).create(APIService.class);
         binding.pbLoading.setVisibility(View.VISIBLE);
-        patientReponseCall = mApiService.loadPatients();
+        patientReponseCall = mApiService.loadPatients(date);
         patientReponseCall.enqueue(new Callback<VisitsResponse>() {
             @Override
             public void onResponse(Call<VisitsResponse> call, Response<VisitsResponse> response) {

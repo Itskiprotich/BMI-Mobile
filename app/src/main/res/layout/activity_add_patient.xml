@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/Theme.BMI.PopupOverlay">
 
             <TextView
@@ -56,7 +57,9 @@
                     android:id="@+id/edt_unique"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:inputType="text"
                     android:textSize="12sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -77,6 +80,7 @@
                     android:id="@+id/edt_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:cursorVisible="false"
                     android:inputType="date"
                     android:textSize="12sp" />
 
@@ -150,27 +154,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/action_email"
-                app:boxStrokeColor="@color/purple_200"
-                app:hintTextColor="@color/purple_200">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:textSize="12sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
                 android:hint="@string/action_dob"
                 app:boxStrokeColor="@color/purple_200"
                 app:hintTextColor="@color/purple_200">
@@ -179,7 +162,8 @@
                     android:id="@+id/edt_dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:cursorVisible="false"
+                    android:inputType="date"
                     android:textSize="12sp" />
 
             </com.google.android.material.textfield.TextInputLayout>

@@ -24,7 +24,26 @@
     <string name="action_date">Date</string>
     <string name="action_status">Status</string>
     <string name="action_age">Age</string>
-    <string name="action_name">Name</string>
+    <string name="action_name">Patient Name</string>
     <string name="action_unique">Unique Code</string>
     <string name="action_reg_date">Registration Date</string>
+    <string name="action_vitals">Vitals Form</string>
+    <string name="action_patient">Patient Name</string>
+    <string name="action_visit_date">Visit Date</string>
+    <string name="action_height">Height</string>
+    <string name="action_weight">Weight</string>
+    <string name="action_bmi">BMI</string>
+    <string name="action_visit_a">Visit A</string>
+    <string name="action_visit_b">Visit B</string>
+    <string name="action_general">General Health</string>
+    <string name="action_good">Good</string>
+    <string name="action_poor">Poor</string>
+    <string name="action_diet">Have you been on diet to loose weight?</string>
+    <string name="action_yes">Yes</string>
+    <string name="action_no">No</string>
+    <string name="action_comment">Enter Comment</string>
+    <string name="action_drugs">Are you currently taking any drugs?</string>
+    <string name="action_date_of">Date of Birth</string>
+    <string name="action_member">Member Since</string>
+    <string name="action_name_user">Full Name</string>
 </resources>

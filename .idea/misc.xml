@@ -3,14 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/cell_bg.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/cell_bg_1.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_add_patient.xml" value="0.18885869565217392" />
+        <entry key="app/src/main/res/layout/activity_avisit.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_avital.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_bvisit.xml" value="0.18885869565217392" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.12681159420289856" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.12681159420289856" />
+        <entry key="app/src/main/res/layout/activity_vital.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.17760416666666667" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1838768115942029" />
         <entry key="app/src/main/res/layout/listing_item.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19025641025641027" />
       </map>
     </option>
   </component>

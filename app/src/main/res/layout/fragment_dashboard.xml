@@ -10,13 +10,82 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/visits_recyclerview"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/listing_item" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/deep_color"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_15dp"
+                android:paddingRight="@dimen/_15dp">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
+                    android:ellipsize="marquee"
+                    android:paddingStart="@dimen/size_4"
+                    android:paddingLeft="@dimen/size_4"
+                    android:paddingTop="@dimen/size_4"
+                    android:paddingEnd="@dimen/size_4"
+                    android:paddingRight="@dimen/size_4"
+                    android:paddingBottom="@dimen/size_4"
+                    android:singleLine="true"
+                    android:text="@string/action_name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    android:id="@+id/tv_loanAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
+                    android:ellipsize="marquee"
+                    android:paddingStart="@dimen/size_4"
+                    android:paddingLeft="@dimen/size_4"
+                    android:paddingTop="@dimen/size_4"
+                    android:paddingEnd="@dimen/size_4"
+                    android:paddingRight="@dimen/size_4"
+                    android:paddingBottom="@dimen/size_4"
+                    android:singleLine="true"
+                    android:text="@string/action_date_of"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_12"
+                    tools:text="A00234" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
+                    android:ellipsize="marquee"
+                    android:paddingStart="@dimen/size_4"
+                    android:paddingLeft="@dimen/size_4"
+                    android:paddingTop="@dimen/size_4"
+                    android:paddingEnd="@dimen/size_4"
+                    android:paddingRight="@dimen/size_4"
+                    android:paddingBottom="@dimen/size_4"
+                    android:singleLine="true"
+                    android:text="@string/action_gender"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_12" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/visits_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/listing_item" />
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/pb_loading"
@@ -30,8 +99,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="50dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="70dp"
         android:backgroundTint="@color/purple_200"
         android:src="@drawable/ic_baseline_add_24"
         android:tint="@color/white"

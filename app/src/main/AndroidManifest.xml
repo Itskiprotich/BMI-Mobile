@@ -14,9 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BMI">
         <activity
-            android:name=".views.AddPatientActivity"
+            android:name=".views.VitalActivity"
             android:theme="@style/Theme.BMI.NoActionBar"
             android:exported="false" />
+        <activity
+            android:name=".views.AddPatientActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BMI.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -28,10 +32,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".vitals.BVitalActivity"
+            android:name=".views.visits.BVisitActivity"
+            android:theme="@style/Theme.BMI.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".vitals.AVitalActivity"
+            android:name=".views.visits.AVisitActivity"
+            android:theme="@style/Theme.BMI.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".auth.RegisterActivity"

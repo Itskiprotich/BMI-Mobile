@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.imeja.bmi.models.LoginDetails;
+import com.imeja.bmi.models.WhereTo;
 
 public class Controller extends Application {
     public static final String MyPREFERENCES = "BMI";
@@ -13,6 +14,8 @@ public class Controller extends Application {
     public static final String userName = "userName";
     public static final String userEmail = "userEmail";
     public static final String userJoined = "userJoined";
+    public static final String currentVital = "currentVital";
+    public static final String currentPatient = "currentPatient";
     static SharedPreferences sharedpreferences;
     static SharedPreferences.Editor editor;
 
@@ -33,6 +36,31 @@ public class Controller extends Application {
         return sharedpreferences.getBoolean(isLoggedIn, false);
     }
 
+    public static void updateVital(WhereTo details) {
+        editor.putString(currentVital, details.id);
+        editor.putString(currentPatient, details.patient_id);
+        editor.commit();
+    }
+
+    public static String  getCurrentPatient() {
+        return sharedpreferences.getString(currentPatient, "");
+    }
+
+    public static String getVital() {
+        return sharedpreferences.getString(currentVital, "");
+    }
+
+    public static String getName() {
+        return sharedpreferences.getString(userName, "");
+    }
+
+    public static String getEmail() {
+        return sharedpreferences.getString(userEmail, "");
+    }
+
+    public static String getJoined() {
+        return sharedpreferences.getString(userJoined, "");
+    }
 
 
     @Override
