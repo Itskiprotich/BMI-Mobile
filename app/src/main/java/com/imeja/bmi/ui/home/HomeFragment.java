@@ -4,38 +4,59 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.imeja.bmi.R;
+import com.imeja.bmi.adapters.VisitsAdapter;
 import com.imeja.bmi.databinding.FragmentHomeBinding;
+import com.imeja.bmi.models.Visits;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
+    private List<Visits> visitsList;
+    private VisitsAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        loadData();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+        return root;
+    }
+
+    private void loadData() {
+        homeViewModel.loadVisits(getActivity(), binding);
+        homeViewModel.liveData.observe(getViewLifecycleOwner(), visit -> {
+            if (visit != null) {
+                if (visit.visits != null) {
+                    try {
+                        visitsList = visit.visits;
+                        try {
+                            adapter = new VisitsAdapter(getActivity(), visitsList);
+                            binding.visitsRecyclerview.setAdapter(adapter);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Request Failed", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getActivity(), "Request Failed", Toast.LENGTH_SHORT).show();
             }
         });
-        return root;
     }
 
     @Override

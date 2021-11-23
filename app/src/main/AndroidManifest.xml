@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.imeja.bmi">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".Controller"
         android:allowBackup="true"
@@ -11,6 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BMI">
         <activity
+            android:name=".views.AddPatientActivity"
+            android:theme="@style/Theme.BMI.NoActionBar"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BMI.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".vitals.BVitalActivity"
             android:exported="false" />
         <activity
@@ -18,18 +35,16 @@
             android:exported="false" />
         <activity
             android:name=".auth.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.BMI.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".auth.LoginActivity" />
+            android:label="@string/app_name" />
+        <activity
+            android:name=".auth.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BMI.NoActionBar" />
     </application>
 
 </manifest>

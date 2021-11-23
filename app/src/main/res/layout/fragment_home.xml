@@ -1,22 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <ProgressBar
+        android:id="@+id/pb_loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/etStartdate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/action_date"
+                    android:padding="4dp"
+                    android:textColor="@color/purple_200"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tvEndDate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    app:layout_constraintBottom_toBottomOf="@+id/etStartdate"
+                    app:layout_constraintStart_toEndOf="@+id/etStartdate"
+                    app:layout_constraintTop_toTopOf="@+id/etStartdate">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="datetime"
+                        android:textSize="12sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/btnSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_baseline_search_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvEndDate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvEndDate"
+                    app:tint="@color/purple_200" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/purple_200"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:ellipsize="marquee"
+                android:paddingStart="@dimen/size_4"
+                android:paddingLeft="@dimen/size_4"
+                android:paddingTop="@dimen/size_4"
+                android:paddingEnd="@dimen/size_4"
+                android:paddingRight="@dimen/size_4"
+                android:paddingBottom="@dimen/size_4"
+                android:singleLine="true"
+                android:text="@string/action_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12" />
+
+            <TextView
+                android:id="@+id/tv_loanAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:ellipsize="marquee"
+                android:paddingStart="@dimen/size_4"
+                android:paddingLeft="@dimen/size_4"
+                android:paddingTop="@dimen/size_4"
+                android:paddingEnd="@dimen/size_4"
+                android:paddingRight="@dimen/size_4"
+                android:paddingBottom="@dimen/size_4"
+                android:singleLine="true"
+                android:text="@string/action_age"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12"
+                tools:text="A00234" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:ellipsize="marquee"
+                android:paddingStart="@dimen/size_4"
+                android:paddingLeft="@dimen/size_4"
+                android:paddingTop="@dimen/size_4"
+                android:paddingEnd="@dimen/size_4"
+                android:paddingRight="@dimen/size_4"
+                android:paddingBottom="@dimen/size_4"
+                android:singleLine="true"
+                android:text="@string/action_status"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/visits_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/listing_item" />
+    </LinearLayout>
+
+</RelativeLayout>

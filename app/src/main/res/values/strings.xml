@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">BMI</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Patients</string>
+    <string name="title_notifications">Profile</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -12,4 +12,19 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="action_enter_password">Enter Password</string>
+    <string name="action_email">Email Address</string>
+    <string name="action_lastname">Last Name</string>
+    <string name="action_firstname">First Name</string>
+    <string name="action_signup">Registration</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_register">Not yet a member? Create Account</string>
+    <string name="action_gender">Gender</string>
+    <string name="action_dob">Date of Birth</string>
+    <string name="action_date">Date</string>
+    <string name="action_status">Status</string>
+    <string name="action_age">Age</string>
+    <string name="action_name">Name</string>
+    <string name="action_unique">Unique Code</string>
+    <string name="action_reg_date">Registration Date</string>
 </resources>

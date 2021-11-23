@@ -16,13 +16,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
 
     public static String BASE_CLIENT = "1";
-    public static String BASE_URL = "https://smp.imejadevelopers.co.ke/api/";
+    public static String BASE_URL = "https://bmi.imejadevelopers.co.ke/api/";
 
     private static Retrofit sRetrofit;
     private static HttpLoggingInterceptor sHttpLoggingInterceptor;
     private static OkHttpClient sOkHttpClient;
     private static TokenInterceptor sInteceptor;
-
 
     public static Retrofit getRetroClient(Context context){
         Gson gson = new GsonBuilder()

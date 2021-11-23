@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:ellipsize="marquee"
+            android:paddingStart="@dimen/size_4"
+            android:paddingLeft="@dimen/size_4"
+            android:paddingTop="@dimen/size_4"
+            android:paddingEnd="@dimen/size_4"
+            android:paddingRight="@dimen/size_4"
+            android:paddingBottom="@dimen/size_4"
+            android:singleLine="true"
+            android:text="@string/action_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_12" />
+
+        <TextView
+            android:id="@+id/tv_age"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:ellipsize="marquee"
+            android:paddingStart="@dimen/size_4"
+            android:paddingLeft="@dimen/size_4"
+            android:paddingTop="@dimen/size_4"
+            android:paddingEnd="@dimen/size_4"
+            android:paddingRight="@dimen/size_4"
+            android:paddingBottom="@dimen/size_4"
+            android:singleLine="true"
+            android:text="@string/action_age"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_12"
+            tools:text="A00234" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:ellipsize="marquee"
+            android:paddingStart="@dimen/size_4"
+            android:paddingLeft="@dimen/size_4"
+            android:paddingTop="@dimen/size_4"
+            android:paddingEnd="@dimen/size_4"
+            android:paddingRight="@dimen/size_4"
+            android:paddingBottom="@dimen/size_4"
+            android:singleLine="true"
+            android:text="@string/action_status"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_12" />
+    </LinearLayout>
+</LinearLayout>
