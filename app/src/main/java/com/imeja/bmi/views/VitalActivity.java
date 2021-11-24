@@ -182,59 +182,64 @@ public class VitalActivity extends AppCompatActivity {
     }
 
     private void checkInputs() {
-        patient_name = binding.autName.getText().toString();
-        if (patient_name.isEmpty()) {
-            Toast.makeText(VitalActivity.this, "Select a Patient", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        patient_id = getIdFromName(patient_name);
-        visit_date = binding.edtVisitDate.getText().toString();
-        height = binding.edtHeight.getText().toString();
-        weight = binding.edtWeight.getText().toString();
-        bmi = binding.edtBmi.getText().toString();
-
-
-        if (patient_id.isEmpty()) {
-            Toast.makeText(VitalActivity.this, "Select Patient", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (visit_date.isEmpty()) {
-            binding.edtVisitDate.setError("Enter Date");
-            binding.edtVisitDate.requestFocus();
-            return;
-        }
-        if (height.isEmpty()) {
-            binding.edtHeight.setError("Enter Height");
-            binding.edtHeight.requestFocus();
-            return;
-        }
-        if (weight.isEmpty()) {
-            binding.edtWeight.setError("Enter Weight");
-            binding.edtWeight.requestFocus();
-            return;
-        }
-        if (bmi.isEmpty()) {
-            binding.edtBmi.setError("Enter BMI");
-            binding.edtBmi.requestFocus();
-            return;
-        }
-        viewModel.addVital(VitalActivity.this, binding, patient_id, visit_date, height, weight, bmi);
-        viewModel.vitalResponseMutableLiveData.observe(this, vital -> {
-            if (vital != null) {
-                try {
-                    whereTo = vital.data;
-                    Controller.updateVital(whereTo);
-                    if (whereTo.slug.equalsIgnoreCase("0")) {
-                        startActivity(new Intent(VitalActivity.this, AVisitActivity.class));
-                    } else {
-                        startActivity(new Intent(VitalActivity.this, BVisitActivity.class));
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        try {
+            patient_name = binding.autName.getText().toString();
+            if (patient_name.isEmpty()) {
+                Toast.makeText(VitalActivity.this, "Select a Patient", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
+            patient_id = getIdFromName(patient_name);
+            visit_date = binding.edtVisitDate.getText().toString();
+            height = binding.edtHeight.getText().toString();
+            weight = binding.edtWeight.getText().toString();
+            bmi = binding.edtBmi.getText().toString();
+
+
+            if (patient_id.isEmpty()) {
+                Toast.makeText(VitalActivity.this, "Select Patient", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (visit_date.isEmpty()) {
+                binding.edtVisitDate.setError("Enter Date");
+                binding.edtVisitDate.requestFocus();
+                return;
+            }
+            if (height.isEmpty()) {
+                binding.edtHeight.setError("Enter Height");
+                binding.edtHeight.requestFocus();
+                return;
+            }
+            if (weight.isEmpty()) {
+                binding.edtWeight.setError("Enter Weight");
+                binding.edtWeight.requestFocus();
+                return;
+            }
+            if (bmi.isEmpty()) {
+                binding.edtBmi.setError("Enter BMI");
+                binding.edtBmi.requestFocus();
+                return;
+            }
+            viewModel.addVital(VitalActivity.this, binding, patient_id, visit_date, height, weight, bmi);
+            viewModel.vitalResponseMutableLiveData.observe(this, vital -> {
+                if (vital != null) {
+                    try {
+                        whereTo = vital.data;
+                        Controller.updateVital(whereTo);
+                        if (whereTo.slug.equalsIgnoreCase("0")) {
+                            startActivity(new Intent(VitalActivity.this, AVisitActivity.class));
+                        } else {
+                            startActivity(new Intent(VitalActivity.this, BVisitActivity.class));
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(VitalActivity.this, "Check All Data fields", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

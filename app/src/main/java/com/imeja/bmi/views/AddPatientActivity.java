@@ -114,71 +114,76 @@ public class AddPatientActivity extends AppCompatActivity {
     }
 
     private void checkInput() {
-        unique = binding.edtUnique.getText().toString();
-        String date = binding.edtDate.getText().toString();
-        String fname = binding.edtFirstname.getText().toString();
-        String lname = binding.edtLastname.getText().toString();
-        gender = binding.autGender.getText().toString();
-        String dob = binding.edtDob.getText().toString();
-        if (date.isEmpty()) {
-            binding.edtDate.setError("Enter Registration Date");
-            binding.edtDate.requestFocus();
-            return;
-        }
-        if (fname.isEmpty()) {
-            binding.edtFirstname.setError("Enter First Name");
-            binding.edtFirstname.requestFocus();
-            return;
-        }
-        if (lname.isEmpty()) {
-            binding.edtLastname.setError("Enter Last Name");
-            binding.edtLastname.requestFocus();
-            return;
-        }
-        if (gender.isEmpty()) {
-            Toast.makeText(AddPatientActivity.this, "Select Gender", Toast.LENGTH_SHORT).show();
-            return;
-        }  if (gender.equalsIgnoreCase("Gender")) {
-            Toast.makeText(AddPatientActivity.this, "Select Gender", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (dob.isEmpty()) {
-            Toast.makeText(AddPatientActivity.this, "Select Date of Birth", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (AppUtils.isOnline(AddPatientActivity.this)) {
-            viewModel.addPatient(AddPatientActivity.this, binding, unique, fname, lname, gender, dob, date);
-            viewModel.liveData.observe(this, response -> {
-                if (response != null) {
-                    try {
-                        dialog = new SweetAlertDialog(AddPatientActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                        dialog.setTitleText("Success")
-                                .setContentText("Registration successful")
-                                .setConfirmClickListener(on -> {
-                                    AddPatientActivity.this.finish();
-                                    on.dismiss();
-                                })
-                                .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
-                        dialog.show();
+        try {
+            unique = binding.edtUnique.getText().toString();
+            String date = binding.edtDate.getText().toString();
+            String fname = binding.edtFirstname.getText().toString();
+            String lname = binding.edtLastname.getText().toString();
+            gender = binding.autGender.getText().toString();
+            String dob = binding.edtDob.getText().toString();
+            if (date.isEmpty()) {
+                binding.edtDate.setError("Enter Registration Date");
+                binding.edtDate.requestFocus();
+                return;
+            }
+            if (fname.isEmpty()) {
+                binding.edtFirstname.setError("Enter First Name");
+                binding.edtFirstname.requestFocus();
+                return;
+            }
+            if (lname.isEmpty()) {
+                binding.edtLastname.setError("Enter Last Name");
+                binding.edtLastname.requestFocus();
+                return;
+            }
+            if (gender.isEmpty()) {
+                Toast.makeText(AddPatientActivity.this, "Select Gender", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (gender.equalsIgnoreCase("Gender")) {
+                Toast.makeText(AddPatientActivity.this, "Select Gender", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (dob.isEmpty()) {
+                Toast.makeText(AddPatientActivity.this, "Select Date of Birth", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (AppUtils.isOnline(AddPatientActivity.this)) {
+                viewModel.addPatient(AddPatientActivity.this, binding, unique, fname, lname, gender, dob, date);
+                viewModel.liveData.observe(this, response -> {
+                    if (response != null) {
+                        try {
+                            dialog = new SweetAlertDialog(AddPatientActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                            dialog.setTitleText("Success")
+                                    .setContentText("Registration successful")
+                                    .setConfirmClickListener(on -> {
+                                        AddPatientActivity.this.finish();
+                                        on.dismiss();
+                                    })
+                                    .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+                            dialog.show();
 
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
-            });
-        }else{
-            dialog = new SweetAlertDialog(AddPatientActivity.this, SweetAlertDialog.ERROR_TYPE);
-            dialog.setTitleText("Internet Connection!!")
-                    .setContentText("An active Internet connection is required")
-                    .setConfirmClickListener(on -> {
-                        on.dismiss();
-                    })
-                    .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
-            dialog.show();
+                });
+            } else {
+                dialog = new SweetAlertDialog(AddPatientActivity.this, SweetAlertDialog.ERROR_TYPE);
+                dialog.setTitleText("Internet Connection!!")
+                        .setContentText("An active Internet connection is required")
+                        .setConfirmClickListener(on -> {
+                            on.dismiss();
+                        })
+                        .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+                dialog.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(AddPatientActivity.this, "Check All Data fields", Toast.LENGTH_SHORT).show();
         }
-
 
     }
 

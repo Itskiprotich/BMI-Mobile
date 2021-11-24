@@ -40,9 +40,10 @@ public class BVisitActivity extends AppCompatActivity {
     private String mFormat;
     private SimpleDateFormat mSdf;
     private DatePickerDialog.OnDateSetListener dateSetListener;
-    private String patient_name,visit_date, general_health, comments, patient_id;
+    private String patient_name, visit_date, general_health, comments, patient_id;
     private SweetAlertDialog dialog;
-    private boolean on_diet,on_drugs;
+    private boolean on_diet, on_drugs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,79 +80,85 @@ public class BVisitActivity extends AppCompatActivity {
         });
         disableTextInputEditText(binding.edtVisitDate);
     }
+
     private void disableTextInputEditText(TextInputEditText editText) {
         editText.setFocusable(false);
         editText.setCursorVisible(false);
         editText.setKeyListener(null);
     }
-    private void checkInput() {
 
-        patient_name = binding.autName.getText().toString();
-        visit_date=binding.edtVisitDate.getText().toString();
-        comments = binding.etComment.getText().toString();
-        if (patient_name.isEmpty()) {
-            Toast.makeText(BVisitActivity.this, "Select Patient ID", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        patient_id = getIdFromName(patient_name);
-        if (patient_id!=null) {
-            if (patient_id.isEmpty()) {
+    private void checkInput() {
+        try {
+            patient_name = binding.autName.getText().toString();
+            visit_date = binding.edtVisitDate.getText().toString();
+            comments = binding.etComment.getText().toString();
+            if (patient_name.isEmpty()) {
                 Toast.makeText(BVisitActivity.this, "Select Patient ID", Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
-        if (binding.rbGood.isChecked()) {
-            general_health = "Good";
-        } else if (binding.rbPoor.isChecked()) {
-            general_health = "Good";
-        }
-        if (binding.rbDietYes.isChecked()) {
-            on_drugs = true;
-        } else if (binding.rbDietNo.isChecked()) {
-            on_drugs = false;
-        }
-        if (general_health.isEmpty()) {
-            Toast.makeText(BVisitActivity.this, "Select Health Status", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        on_diet = false;
-
-        if (comments.isEmpty()) {
-            binding.etComment.setError("Enter Comment");
-            binding.etComment.requestFocus();
-            return;
-        }
-        viewModel.addVisitB(BVisitActivity.this, binding, patient_id,visit_date, general_health, on_diet, on_drugs, comments);
-        viewModel.visitResponseMutableLiveData.observe(this, visitResponse -> {
-            if (visitResponse != null) {
-                try {
-                    if (visitResponse.data.slug.equalsIgnoreCase("0")) {
-                        dialog = new SweetAlertDialog(BVisitActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                        dialog.setTitleText("Success")
-                                .setContentText("Visit saved successfully")
-                                .setConfirmClickListener(on -> {
-                                    BVisitActivity.this.finishAffinity();
-                                    startActivity(new Intent(BVisitActivity.this, MainActivity.class));
-                                    on.dismiss();
-                                })
-                                .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
-                    } else {
-                        dialog = new SweetAlertDialog(BVisitActivity.this, SweetAlertDialog.ERROR_TYPE);
-                        dialog.setTitleText("Failed")
-                                .setContentText(visitResponse.data.message)
-                                .setConfirmClickListener(on -> {
-
-                                    on.dismiss();
-                                })
-                                .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
-                    }
-                    dialog.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+            patient_id = getIdFromName(patient_name);
+            if (patient_id != null) {
+                if (patient_id.isEmpty()) {
+                    Toast.makeText(BVisitActivity.this, "Select Patient ID", Toast.LENGTH_SHORT).show();
+                    return;
                 }
             }
-        });
+            if (binding.rbGood.isChecked()) {
+                general_health = "Good";
+            } else if (binding.rbPoor.isChecked()) {
+                general_health = "Good";
+            }
+            if (binding.rbDietYes.isChecked()) {
+                on_drugs = true;
+            } else if (binding.rbDietNo.isChecked()) {
+                on_drugs = false;
+            }
+            if (general_health.isEmpty()) {
+                Toast.makeText(BVisitActivity.this, "Select Health Status", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            on_diet = false;
+
+            if (comments.isEmpty()) {
+                binding.etComment.setError("Enter Comment");
+                binding.etComment.requestFocus();
+                return;
+            }
+            viewModel.addVisitB(BVisitActivity.this, binding, patient_id, visit_date, general_health, on_diet, on_drugs, comments);
+            viewModel.visitResponseMutableLiveData.observe(this, visitResponse -> {
+                if (visitResponse != null) {
+                    try {
+                        if (visitResponse.data.slug.equalsIgnoreCase("0")) {
+                            dialog = new SweetAlertDialog(BVisitActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                            dialog.setTitleText("Success")
+                                    .setContentText("Visit saved successfully")
+                                    .setConfirmClickListener(on -> {
+                                        BVisitActivity.this.finishAffinity();
+                                        startActivity(new Intent(BVisitActivity.this, MainActivity.class));
+                                        on.dismiss();
+                                    })
+                                    .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+                        } else {
+                            dialog = new SweetAlertDialog(BVisitActivity.this, SweetAlertDialog.ERROR_TYPE);
+                            dialog.setTitleText("Failed")
+                                    .setContentText(visitResponse.data.message)
+                                    .setConfirmClickListener(on -> {
+
+                                        on.dismiss();
+                                    })
+                                    .setNeutralButtonTextColor(Color.parseColor("#297545")).setCancelable(false);
+                        }
+                        dialog.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(BVisitActivity.this, "Check All Data fields", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -177,7 +184,7 @@ public class BVisitActivity extends AppCompatActivity {
 
 
     private void loadPatients(String currentPatient) {
-        viewModel.loadCurrentPatients(BVisitActivity.this,currentPatient);
+        viewModel.loadCurrentPatients(BVisitActivity.this, currentPatient);
         viewModel.patientsResponseMutableLiveData.observe(this, patientsResponse -> {
             if (patientsResponse != null) {
                 try {
