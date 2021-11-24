@@ -18,7 +18,7 @@ git clone https://github.com/Itskiprotich/BMI-Mobile.git
 ```
 
 ## Running the application
-Open the cloned project in Android Studio
+Open the cloned project in Android Studio and sync the dependecies
 
 ## App Overview
 
